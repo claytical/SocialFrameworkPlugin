@@ -6,10 +6,5 @@ show: function (success, fail, textToShare) {
                         "show",
                         [textToShare]);
 }
-/*show: function (textToShare) {
-    return Cordova.exec(
-                        "com.dataplayed.SocialFrameworkPlugin.show",
-                        [textToShare]);
-}
-  */
+
 };
