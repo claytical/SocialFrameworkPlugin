@@ -18,6 +18,8 @@
 @property(nonatomic,copy) NSArray *excludedActivityTypes;
 
 -(void) show:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+-(void) tweet:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
+-(void) postToFacebook:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 
 
 @end
