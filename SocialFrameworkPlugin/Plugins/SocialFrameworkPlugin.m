@@ -108,6 +108,8 @@
     NSString *callbackId = [arguments pop];
     
     NSString *textToShare = [arguments objectAtIndex:0];
+    
+    NSData *imageToShare = [NSData dataFromBase64String:[arguments objectAtIndex:1]];
 
     SLComposeViewController *tweetSLComposerSheet;
 
@@ -117,6 +119,8 @@
         tweetSLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         
         [tweetSLComposerSheet setInitialText:[NSString stringWithFormat:textToShare,tweetSLComposerSheet.serviceType]];
+        [tweetSLComposerSheet addImage:[UIImage imageWithData:imageToShare]];
+
         [self.viewController presentViewController:tweetSLComposerSheet animated:YES completion:nil];
     }
 
