@@ -24,14 +24,18 @@
     
     NSString *textToShare = [arguments objectAtIndex:0];
 
-    NSData *imageData = [NSData dataFromBase64String:[arguments objectAtIndex:1]];
-    UIImage *imageToShare = [UIImage imageWithData:imageData];
-
     CDVPluginResult *result;
+    NSArray *activityItems;
+    if ([arguments objectAtIndex:1] == [NSNull null]) {
+        activityItems = @[textToShare];
+    }
+    else {
+        NSData *imageData = [NSData dataFromBase64String:[arguments objectAtIndex:1]];
+        UIImage *imageToShare = [UIImage imageWithData:imageData];
+        activityItems = @[textToShare, imageToShare];
+    }
 
 
-    
-    NSArray *activityItems = @[textToShare, imageToShare];
     UIActivityViewController *activityController = [[UIActivityViewController alloc]
                                                     initWithActivityItems:activityItems applicationActivities:nil];
     
@@ -63,8 +67,6 @@
     NSString *callbackId = [arguments pop];
     
     NSString *textToShare = [arguments objectAtIndex:0];
-    
-    NSData *imageToShare = [NSData dataFromBase64String:[arguments objectAtIndex:1]];
 
     //TODO: figure out how arrays work within cordova to allow image and url sharing
     /*
@@ -78,7 +80,12 @@
         fbSLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
         
         [fbSLComposerSheet setInitialText:[NSString stringWithFormat:textToShare,fbSLComposerSheet.serviceType]];
-        [fbSLComposerSheet addImage:[UIImage imageWithData:imageToShare]];
+        if ([arguments objectAtIndex:1] != [NSNull null]) {
+            NSData *imageToShare = [NSData dataFromBase64String:[arguments objectAtIndex:1]];
+            [fbSLComposerSheet addImage:[UIImage imageWithData:imageToShare]];
+            
+        }
+        
         //        [fbSLComposerSheet addURL:[NSURL URLWithString:urlToShare]];
         [self.viewController presentViewController:fbSLComposerSheet animated:YES completion:nil];
     }
@@ -109,7 +116,6 @@
     
     NSString *textToShare = [arguments objectAtIndex:0];
     
-    NSData *imageToShare = [NSData dataFromBase64String:[arguments objectAtIndex:1]];
 
     SLComposeViewController *tweetSLComposerSheet;
 
@@ -119,7 +125,11 @@
         tweetSLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
         
         [tweetSLComposerSheet setInitialText:[NSString stringWithFormat:textToShare,tweetSLComposerSheet.serviceType]];
-        [tweetSLComposerSheet addImage:[UIImage imageWithData:imageToShare]];
+        if ([arguments objectAtIndex:1] != [NSNull null]) {
+            NSData *imageToShare = [NSData dataFromBase64String:[arguments objectAtIndex:1]];
+            [tweetSLComposerSheet addImage:[UIImage imageWithData:imageToShare]];
+            
+        }
 
         [self.viewController presentViewController:tweetSLComposerSheet animated:YES completion:nil];
     }
