@@ -24,3 +24,7 @@ If you want to modify what services show up, modify the line 33 in SocialFramewo
 activityController.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeCopyToPasteboard];
 
 A full list can be found at http://developer.apple.com/library/ios/#documentation/UIKit/Reference/UIActivity_Class/Reference/Reference.html#//apple_ref/occ/cl/UIActivity
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/claytical/socialframeworkplugin/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
