@@ -18,11 +18,15 @@
 
 
 
-- (void) show:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
-    NSString *callbackId = [arguments pop];
-    
-    
+- (void)show:(CDVInvokedUrlCommand*)command
+{
+    NSString *callbackId = command.callbackId;
+    NSArray *arguments = command.arguments;
     NSString *textToShare = [arguments objectAtIndex:0];
+
+/*- (void) show:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
+    NSString *callbackId = [arguments pop];
+    NSString *textToShare = [arguments objectAtIndex:0];*/
 
     CDVPluginResult *result;
     NSArray *activityItems;
